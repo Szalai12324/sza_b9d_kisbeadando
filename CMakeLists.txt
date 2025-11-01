@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(ros2_cpp_template)
+project(sza_b9d_kisbeadando)
 
 # Default to C++14
 if(NOT CMAKE_CXX_STANDARD)
@@ -32,3 +32,18 @@ install(TARGETS
 DESTINATION lib/${PROJECT_NAME})
 
 ament_package()
+
+
+
+add_executable(generator_node src/generator_node.cpp)
+ament_target_dependencies(generator_node rclcpp std_msgs)
+
+add_executable(decider_node src/decider_node.cpp)
+ament_target_dependencies(decider_node rclcpp std_msgs std_msgs)
+
+install(TARGETS
+  decider_node
+  generator_node
+  publisher_node
+  DESTINATION lib/${PROJECT_NAME}
+)
